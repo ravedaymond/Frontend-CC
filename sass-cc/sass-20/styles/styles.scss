@@ -1,0 +1,13 @@
+@import "./variables";
+@import "./extend";
+
+button {
+    background-color: $primaryButton;
+    &:hover {
+        background-color: $primaryButtonHover;
+    }
+}
+
+.contact {
+    @include flex-center(column, blue)
+}
