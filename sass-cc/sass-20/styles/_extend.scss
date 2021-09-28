@@ -1,8 +1,0 @@
-@import "./header";
-
-.extend {
-    @extend header;
-    background-color: seagreen;
-    // width: calc(100% - 20px); // Calc is built in css
-    width: 100% - 20%; // SASS operators only allow same unit operations
-}

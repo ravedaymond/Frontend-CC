@@ -1,0 +1,21 @@
+<mat-tab-group class="mat-elevation-z4" mat-stretch-tabs mat-align-tabs="start" (selectedTabChange)="tabClick($event)">
+  <mat-tab label="Endless Table">
+    <div class="mat-tab-content">
+      <app-endless-table></app-endless-table>
+    </div>
+  </mat-tab>
+  <mat-tab label="Paginated Table">
+    <ng-template matTabContent>
+      <div class="mat-tab-content">
+        <app-paginated-table></app-paginated-table>
+      </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Search By Form">
+    <ng-template matTabContent>
+      <div class="mat-tab-content">
+        <app-search-by-form></app-search-by-form>
+      </div>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,5 @@
+{
+  "auth": [
+     { "email": "test@app.me", "password": "password" }
+  ]
+}

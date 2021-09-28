@@ -1,0 +1,20 @@
+<div class="container">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="user@email.domain" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="" type="password" required>
+    </mat-form-field>
+    <div id="login-buttons">
+      <button id="login-submit" type="submit" mat-raised-button [disabled]="loginForm.form.valid">Login</button>
+      <button id="login-register" mat-raised-button>Register</button>
+      <br/>
+      <a id="login-forgot" href="">Forgot password?</a>
+    </div>
+  </form>
+</div>

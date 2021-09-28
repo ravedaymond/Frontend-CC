@@ -1,0 +1,99 @@
+<mat-drawer-container>
+  <mat-drawer mode="side" opened>
+    <form>
+      <mat-slide-toggle
+        name="exact-firstName"
+        [(ngModel)]="exactFirstName">Exact Match</mat-slide-toggle>
+      <br/>
+      <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input placeholder="Jo"
+               matInput
+               matTooltip="Alphabetical, not case-sensitive"
+               matTooltipPosition="right"
+               [formControl]="firstName"
+        />
+        <mat-error *ngIf="firstName.invalid">{{getFirstNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br/>
+      <mat-slide-toggle name="exact-lastName" [(ngModel)]="exactLastName">Exact Match</mat-slide-toggle>
+      <br/>
+      <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input placeholder="Doe"
+               matInput
+               matTooltip="Alphabetical, not case-sensitive"
+               matTooltipPosition="right"
+               [formControl]="lastName"
+        />
+        <mat-error *ngIf="lastName.invalid">{{getLastNameErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br/>
+      <mat-slide-toggle name="exact-email" [(ngModel)]="exactEmail">Exact Match</mat-slide-toggle>
+      <br/>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input placeholder="user@email.domain"
+               matInput
+               [formControl]=" exactEmail ? emailFull : emailPart"
+        />
+        <mat-error *ngIf="exactEmail ? emailFull.invalid : emailPart.invalid">{{getEmailErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br/>
+      <mat-form-field appearance="outline">
+        <mat-label>IP Address</mat-label>
+        <input placeholder="x.x.x.x"
+               matInput
+               matTooltip="Use * as wildcard"
+               matTooltipPosition="right"
+               [formControl]="ipAddress">
+        <mat-error *ngIf="ipAddress.invalid">{{getIpAddressErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br/>
+      <button id="search-submit" (click)="search()" mat-raised-button>Search</button>
+      <button id="search-clear" (click)="clearResults()" mat-raised-button>Clear Results</button>
+    </form>
+  </mat-drawer>
+  <mat-drawer-content>
+    <table class="mat-elevation-z8" mat-table [dataSource]="tableData">
+      <!-- Column: id -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let user"> {{user.id}}</td>
+      </ng-container>
+
+      <!-- Column: first_name -->
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef> First Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.first_name}}</td>
+      </ng-container>
+
+      <!-- Column: last_name -->
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.last_name}}</td>
+      </ng-container>
+
+      <!-- Column: email -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email}}</td>
+      </ng-container>
+
+      <!-- Column: gender -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let user"> {{user.gender}}</td>
+      </ng-container>
+
+      <!-- Column: ip_address -->
+      <ng-container matColumnDef="ip_address">
+        <th mat-header-cell *matHeaderCellDef> IPv4 </th>
+        <td mat-cell *matCellDef="let user"> {{user.ip_address}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="enabledColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: enabledColumns;"></tr>
+    </table>
+  </mat-drawer-content>
+</mat-drawer-container>
